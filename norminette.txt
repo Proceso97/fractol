@@ -1,0 +1,33 @@
+42 NORME
+A structure’s name must start by s_.
+A typedef’s name must start by t_.
+A union’s name must start by u_.
+An enum’s name must start by e_.
+A global’s name must start by g_.
+Variables and functions names can only contain lowercases, digits and ’_’ 
+You must indent your code with 4-space tabulations. This is not the same as 4
+average spaces, we’re talking about real tabulations here.
+Each function must be maximum 25 lines
+• Each line must be at most 80 columns wide
+• One instruction per line.
+• You need to start a new line after each curly bracket or end of control structure
+• Each variable declaration must be indented on the same column.
+The asterisks that go with pointers must be stuck to variable names.
+One single variable declaration per line.
+We cannot stick a declaration and an initialisation on the same line
+Multiple assignments are strictly forbidden
+You may add a new line after an instruction or control structure, but you’ll have to add an indentation with brackets or affectation operator. Operators must be at the beginning of a line.
+II.3 Functions parameters
+Mandatory part
+A function can take 4 named parameters maximum.
+Parameters in functions’ prototypes must be named.
+• Each function must be separated from the next by an empty line.
+• You can’t declare more than 5 variables per bloc. 
+ You’re not allowed to use :
+◦ for
+◦ do...while
+◦ switch
+◦ case
+◦ goto
+• Interlinked ternary operators such as ‘?’.
+• VLAs - Variable Length Arrays.

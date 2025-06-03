@@ -1,0 +1,23 @@
+# Archivos compilados
+*.o
+*.a
+fractol
+
+# Archivos temporales
+*~
+.DS_Store
+
+# Directorios de compilación
+obj/
+build/
+
+# Archivos de MLX (si están localmente)
+mlx/
+
+# Archivos de VSCode (opcional)
+.vscode/
+
+# Archivos de backup
+*.bak
+*.swp
+*.tmp
