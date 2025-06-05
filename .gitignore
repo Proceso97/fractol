@@ -21,3 +21,8 @@ mlx/
 *.bak
 *.swp
 *.tmp
+
+# Archivos de norminette
+instrucciones/
+instrucciones.txt
+norminette.txt

@@ -20,6 +20,8 @@ int	is_valid_fractal(char *name)
 		return (1);
 	if (!ft_strncmp(name, "julia", 5))
 		return (2);
+	if (!ft_strncmp(name, "burning_ship", 12))
+		return (3);
 	return (0);
 }
 
@@ -29,6 +31,7 @@ void	print_help(void)
 	ft_printf("Fractales disponibles:\n");
 	ft_printf("  mandelbrot\n");
 	ft_printf("  julia\n");
+	ft_printf("  burning_ship\n");
 }
 
 int	main(int argc, char **argv)
@@ -47,13 +50,10 @@ int	main(int argc, char **argv)
 		return (2);
 	}
 	if (fractal_type == 1)
-	{
-		ft_printf("Renderizando Mandelbrot...\n");
 		render_mandelbrot();
-	}
 	else if (fractal_type == 2)
-	{
-		ft_printf("Renderizado de Julia aún no implementado.\n");
-	}
+		render_julia();
+	else if (fractal_type == 3)
+		render_burning_ship();
 	return (0);
 }

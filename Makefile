@@ -6,7 +6,7 @@
 #    By: jzarza-g <jzarza-g@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 13:03:01 by jzarza-g          #+#    #+#              #
-#    Updated: 2025/06/02 19:30:54 by jzarza-g         ###   ########.fr        #
+#    Updated: 2025/06/05 12:27:20 by jzarza-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,17 @@ CC         = cc
 CFLAGS     = -Wall -Wextra -Werror
 INCLUDES   = -I. -Ilibft -Iheaders -Imlx
 
-SRC        = src/fractol.c src/render.c
+SRC        = src/fractol.c src/utils.c \
+			 src/init.c src/events.c src/algorithms.c \
+			 src/render.c src/draw_fractals.c
+
 OBJ        = $(SRC:.c=.o)
 
+# Libft
 LIBFT_DIR  = libft
 LIBFT      = $(LIBFT_DIR)/libft.a
 
-# MLX configuration for Linux
+# MLX
 MLX_DIR    = mlx
 MLX_FLAGS  = -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm
 
