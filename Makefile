@@ -6,49 +6,50 @@
 #    By: jzarza-g <jzarza-g@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 13:03:01 by jzarza-g          #+#    #+#              #
-#    Updated: 2025/06/05 12:27:20 by jzarza-g         ###   ########.fr        #
+#    Updated: 2025/06/05 14:40:52 by jzarza-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME       = fractol
-CC         = cc
-CFLAGS     = -Wall -Wextra -Werror
-INCLUDES   = -I. -Ilibft -Iheaders -Imlx
+NAME = fractol
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
-SRC        = src/fractol.c src/utils.c \
-			 src/init.c src/events.c src/algorithms.c \
-			 src/render.c src/draw_fractals.c
+SRC = src/fractol.c src/utils.c src/init.c src/events.c \
+	  src/algorithms.c src/render.c src/draw_fractals.c
 
-OBJ        = $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
-# Libft
-LIBFT_DIR  = libft
-LIBFT      = $(LIBFT_DIR)/libft.a
+LIBFT = libft/libft.a
+MLX_DIR = mlx
+MLX_LIB = $(MLX_DIR)/libmlx.a
+LIBS = -Llibft -lft -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-# MLX
-MLX_DIR    = mlx
-MLX_FLAGS  = -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm
+all: $(LIBFT) $(MLX_LIB) $(NAME)
 
-.PHONY: all libft clean fclean re
+$(LIBFT):
+	make -C libft
 
-all: libft $(NAME)
+$(MLX_LIB): $(MLX_DIR)
+	make -C $(MLX_DIR)
 
-libft:
-	@$(MAKE) -C $(LIBFT_DIR)
+$(MLX_DIR):
+	git clone https://github.com/42Paris/minilibx-linux.git $(MLX_DIR)
 
-$(NAME): $(OBJ) $(LIBFT)
-	@echo "==> Linking $(NAME)..."
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -Iheaders -Ilibft -I$(MLX_DIR) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
-	@$(MAKE) -C $(LIBFT_DIR) clean
+	rm -f $(OBJ)
+	make -C libft clean
+	if [ -d $(MLX_DIR) ]; then make -C $(MLX_DIR) clean; fi
 
 fclean: clean
-	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
+	rm -f $(NAME)
+	make -C libft fclean
 
 re: fclean all
+
+.PHONY: all clean fclean re
